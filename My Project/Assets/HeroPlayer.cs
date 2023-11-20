@@ -7,6 +7,8 @@ public class HeroPlayer : MonoBehaviour
     private CharacterController characterController;
 
      public float characterSpeed = 5f;
+     public float horizontal, vertical;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,9 @@ public class HeroPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 jump = new Vector3(Input.GetAxis("Jump"));
-        characterController.jump (jump * Time.deltaTime * characterSpeed);
+        horizontal = Input.GetAxis("Horizontal") * characterSpeed*Time.deltaTime;
+        transform.Translate(horizontal, 0, 0);
+        vertical = Input.GetAxis("Vertical") * characterSpeed * Time.deltaTime;
+        transform.Translate(0,0,vertical);
     }
 }
